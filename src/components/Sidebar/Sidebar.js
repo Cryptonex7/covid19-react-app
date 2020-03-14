@@ -31,16 +31,9 @@ export default function Sidebar(props) {
       {routes.map((prop, key) => {
         var activePro = " ";
         var listItemClasses;
-        if (prop.path === "/upgrade-to-pro") {
-          activePro = classes.activePro + " ";
-          listItemClasses = classNames({
-            [" " + "primaryRed"]: true
-          });
-        } else {
-          listItemClasses = classNames({
-            [" " + "primaryRed"]: activeRoute(prop.layout + prop.path)
-          });
-        }
+        listItemClasses = classNames({
+          [" " + "primaryRed"]: activeRoute(prop.layout + prop.path)
+        });
         const whiteFontClasses = classNames({
           [" " + classes.whiteFont]: activeRoute(prop.layout + prop.path)
         });
