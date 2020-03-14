@@ -3,10 +3,6 @@ import {
   defaultFont,
   primaryColor,
   defaultBoxShadow,
-  infoColor,
-  successColor,
-  warningColor,
-  dangerColor,
   whiteColor,
   grayColor
 } from "../../material-dashboard-react.js";
@@ -57,26 +53,6 @@ const headerStyle = () => ({
     color: whiteColor,
     ...defaultBoxShadow
   },
-  info: {
-    backgroundColor: infoColor[0],
-    color: whiteColor,
-    ...defaultBoxShadow
-  },
-  success: {
-    backgroundColor: successColor[0],
-    color: whiteColor,
-    ...defaultBoxShadow
-  },
-  warning: {
-    backgroundColor: warningColor[0],
-    color: whiteColor,
-    ...defaultBoxShadow
-  },
-  danger: {
-    backgroundColor: dangerColor[0],
-    color: whiteColor,
-    ...defaultBoxShadow
-  }
 });
 
 export default headerStyle;
