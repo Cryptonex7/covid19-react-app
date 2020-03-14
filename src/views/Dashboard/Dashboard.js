@@ -6,13 +6,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
+import FastFood from "@material-ui/icons/Fastfood";
 import AllInboxRounded from "@material-ui/icons/AllInboxRounded";
 import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
@@ -54,7 +53,7 @@ export default function Dashboard() {
               </CardIcon>
               <p className={classes.cardCategory}>New Users</p>
               <h3 className={classes.cardTitle}>
-                1024 <small>Users</small>
+                102,406 
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -71,10 +70,10 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="primary" stats icon>
               <CardIcon color="primary">
-                <Store />
+                <FastFood />
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+              <p className={classes.cardCategory}>Orders</p>
+              <h3 className={classes.cardTitle}>34,245</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -88,15 +87,15 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="primary" stats icon>
               <CardIcon color="primary">
-                <Icon>info_outline</Icon>
+                <Icon>chrome_reader_mode</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
+              <p className={classes.cardCategory}>Bills</p>
               <h3 className={classes.cardTitle}>75</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <LocalOffer />
-                Tracked from Github
+                <Icon>attach_money</Icon>
+                Last Bill: $549.25
               </div>
             </CardFooter>
           </Card>
@@ -105,15 +104,55 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="primary" stats icon>
               <CardIcon color="primary">
-                <Accessibility />
+                <Icon>attach_money</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
-              <h3 className={classes.cardTitle}>+245</h3>
+              <p className={classes.cardCategory}>Total Bill Value</p>
+              <h3 className={classes.cardTitle}>$2,450,876</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <Update />
                 Just Updated
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+      </GridContainer>
+      <GridContainer>
+        <GridItem xs={12} sm={6} md={6}>
+          <Card>
+            <CardHeader color="primary" stats icon>
+              <CardIcon color="primary">
+                <Icon>monetization_on</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>Average Ticket Size</p>
+              <h3 className={classes.cardTitle}>
+                $247.43
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Primary>
+                  <AllInboxRounded />
+                </Primary>
+                  <b style={{color: "lightgreen"}}>+7.9%</b>
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <Card>
+            <CardHeader color="primary" stats icon>
+              <CardIcon color="primary">
+                <Store />
+              </CardIcon>
+              <p className={classes.cardCategory}>Live Restaurants</p>
+              <h3 className={classes.cardTitle}>245</h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <DateRange />
+                Total Restaurants: 3,456 
               </div>
             </CardFooter>
           </Card>
