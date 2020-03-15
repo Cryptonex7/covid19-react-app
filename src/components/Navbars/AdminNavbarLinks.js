@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-// @material-ui/core components
+  
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
@@ -14,11 +14,11 @@ import Divider from "@material-ui/core/Divider";
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
 import Search from "@material-ui/icons/Search";
-// core components
+ 
 import CustomInput from "../CustomInput/CustomInput.js";
 import Button from "../CustomButtons/Button.js";
 
-import styles from "../../assets/jss/material-dashboard-react/components/headerLinksStyle.js";
+import styles from "../../assets/jss/materialStyles/components/headerLinksStyle.js";
 
 const useStyles = makeStyles(styles);
 

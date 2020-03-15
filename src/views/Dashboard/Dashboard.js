@@ -15,7 +15,7 @@ import AccessTime from "@material-ui/icons/AccessTime";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
-// core components
+ 
 import GridItem from "../../components/Grid/GridItem.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import Table from "../../components/Table/Table.js";
@@ -36,7 +36,7 @@ import {
   completedTasksChart
 } from "../../variables/charts.js";
 
-import styles from "../../assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import styles from "../../assets/jss/materialStyles/views/dashboardStyle.js";
 
 const useStyles = makeStyles(styles);
 

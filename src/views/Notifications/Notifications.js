@@ -2,11 +2,11 @@
 import React from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
-// @material-ui/core components
+  
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
-// core components
+ 
 import GridItem from "../../components/Grid/GridItem.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import Button from "../../components/CustomButtons/Button.js";
@@ -57,9 +57,7 @@ export default function Notifications() {
   const [bc, setBC] = React.useState(false);
   const [br, setBR] = React.useState(false);
   React.useEffect(() => {
-    // Specify how to clean up after this effect:
     return function cleanup() {
-      // to stop the warning of calling setState of unmounted component
       var id = window.setTimeout(null, 0);
       while (id--) {
         window.clearTimeout(id);

@@ -1,21 +1,12 @@
-// ##############################
-// // // javascript library for creating charts
-// #############################
-var Chartist = require("chartist");
+import Chartist from "chartist";
 
-// ##############################
-// // // variables used to create animation on charts
-// #############################
-var delays = 80,
+const delays = 80,
   durations = 500;
-var delays2 = 80,
+const delays2 = 80,
   durations2 = 500;
 
-// ##############################
-// // // Daily Sales
-// #############################
 
-const dailySalesChart = {
+export const dailySalesChart = {
   data: {
     labels: ["M", "T", "W", "T", "F", "S", "S"],
     series: [[12, 17, 7, 17, 23, 18, 38], [12, 17, 7, 17, 23, 18, 38].sort()]
@@ -25,7 +16,7 @@ const dailySalesChart = {
       tension: 0
     }),
     low: 0,
-    high: 50, // creative tim: we recommend you to set the high as the biggest value + something for a better look
+    high: 50, // set the high as the biggest value + something for a better look
     chartPadding: {
       top: 0,
       right: 0,
@@ -33,7 +24,6 @@ const dailySalesChart = {
       left: 0
     }
   },
-  // for animation
   animation: {
     draw: function(data) {
       if (data.type === "line" || data.type === "area") {
@@ -65,11 +55,8 @@ const dailySalesChart = {
   }
 };
 
-// ##############################
-// // // Email Subscriptions
-// #############################
 
-const emailsSubscriptionChart = {
+export const emailsSubscriptionChart = {
   data: {
     labels: [
       "Jan",
@@ -130,11 +117,8 @@ const emailsSubscriptionChart = {
   }
 };
 
-// ##############################
-// // // Completed Tasks
-// #############################
 
-const completedTasksChart = {
+export const completedTasksChart = {
   data: {
     labels: ["12am", "3pm", "6pm", "9pm", "12pm", "3am", "6am", "9am"],
     series: [[230, 750, 450, 300, 280, 240, 200, 190]]
@@ -144,7 +128,7 @@ const completedTasksChart = {
       tension: 0
     }),
     low: 0,
-    high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    high: 1000, // set the high as the biggest value + something for a better look
     chartPadding: {
       top: 0,
       right: 0,
@@ -181,10 +165,4 @@ const completedTasksChart = {
       }
     }
   }
-};
-
-module.exports = {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart
 };

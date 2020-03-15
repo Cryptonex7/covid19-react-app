@@ -8,12 +8,12 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-// core components
+ 
 import Card from "../Card/Card.js";
 import CardBody from "../Card/CardBody.js";
 import CardHeader from "../Card/CardHeader.js";
 
-import styles from "../../assets/jss/material-dashboard-react/components/customTabsStyle.js";
+import styles from "../../assets/jss/materialStyles/components/customTabsStyle.js";
 
 const useStyles = makeStyles(styles);
 

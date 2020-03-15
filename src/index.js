@@ -8,9 +8,9 @@ import { ConnectedRouter } from "connected-react-router";
 import { store, persistor, history } from "./store";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// core components
+
 import Admin from "./layouts/Admin.js";
-import "./assets/css/material-dashboard-react.css";
+import "./assets/css/materialStyles.css";
 
 const hist = createBrowserHistory();
 
