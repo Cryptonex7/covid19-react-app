@@ -9,7 +9,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -22,10 +22,9 @@ import { withStyles } from "@material-ui/styles";
 // import { doLogin } from "../../services/thunks";
 // import { handleError } from "../../services/auth/actions";
 import {useDispatch} from 'react-redux'
-import { primaryColor } from "../../assets/jss/materialStyles";
+import { primaryColor, grayColor } from "../../assets/jss/materialStyles";
 import { withRouter } from "react-router-dom";
-import { loginAdmin, getDashboardData } from "../../services/auth/actions";
-import { push } from "connected-react-router";
+import { loginAdmin } from "../../services/auth/actions";
 
 const ErrorDialog = (props) => {
 
@@ -74,13 +73,24 @@ const styles = {
     marginTop: 20
   },
   loginProgress: {
-    margin: 5
+    margin: 5,
+    color: primaryColor[0]
   },
   loginText: {
     fontWeight: 400
   },
   forget: {
     cursor: 'pointer'
+  },
+  root: {
+    '& label.Mui-focused': {
+      color: grayColor[1],
+    },
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: primaryColor[1],
+      },
+    }
   }
 };
 
@@ -88,7 +98,7 @@ const LoginPage = (props) => {
     const [alertDialog, setAlertDialog] =  useState(false)
     const [userID, setUserID]= useState("")
     const [password, setPassword]= useState("")
-
+    const authPending = useSelector(state => state.auth.authPending)
     useEffect(() => {
         //props.isLoggedIn && props.dispatch(push("/admin/dashboard"));
     })
@@ -112,12 +122,13 @@ const LoginPage = (props) => {
                   margin="normal"
                   required
                   fullWidth
-                  disabled={props.isLoggingIn}
+                  disabled={authPending}
                   value={userID}
                   onChange={(e) => setUserID(e.target.value)}
                   label="Username"color={primaryColor[0]}   
                   autoComplete="email"
                   autoFocus
+                  className={props.classes.root}
                 />
                 <TextField
                   value={password}
@@ -125,11 +136,12 @@ const LoginPage = (props) => {
                   variant="outlined"color={primaryColor[0]}
                   margin="normal"
                   required
-                  disabled={props.isLoggingIn}
+                  disabled={authPending}
                   fullWidth
                   label="Password"
                   type="password"
                   autoComplete="current-password"
+                  className={props.classes.root}
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" color={primaryColor[0]} />}
@@ -148,13 +160,13 @@ const LoginPage = (props) => {
                   }}
                   type="submit"
                   fullWidth
-                  disabled={props.isLoggingIn}
+                  disabled={authPending}
                   size="large"
                   variant="outlined"
                   color={primaryColor[0]}
                   className={props.classes.submit}
                 >
-                  {props.isLoggingIn ? (
+                  {authPending ? (
                     <CircularProgress
                       className={props.classes.loginProgress}
                       size={24}
@@ -211,7 +223,7 @@ const LoginPage = (props) => {
             </div>
           </Container>
         ) : (
-          "Go to DashBoard"
+          "Redirecting to Dashboard..."
         )}
         <ErrorDialog show={props.isLoginFailed} />
       </Fragment>
