@@ -1,29 +1,27 @@
 import {
   defaultFont,
   primaryColor,
-  whiteColor
+  whiteColor,
+  grayColor
 } from "../../materialStyles.js";
 
-import dropdownStyle from "../../materialStyles/dropdownStyle";
 
 const headerLinksStyle = theme => ({
-  ...dropdownStyle(theme),
-  search: {
-    "& > div": {
-      marginTop: "0"
+  root: {
+    '& label.Mui-focused': {
+      color: grayColor[1],
     },
-    [theme.breakpoints.down("sm")]: {
-      margin: "10px 15px !important",
-      float: "none !important",
-      paddingTop: "1px",
-      paddingBottom: "1px",
-      padding: "0!important",
-      width: "60%",
-      marginTop: "40px",
-      "& input": {
-        color: whiteColor
-      }
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: primaryColor[1],
+      },
     }
+  },
+  checked: {
+    color: primaryColor[4],
+    '&$checked': {
+      color: primaryColor[0],
+    },
   },
   linkText: {
     zIndex: "4",
@@ -63,10 +61,7 @@ const headerLinksStyle = theme => ({
       float: "right"
     }
   },
-  margin: {
-    zIndex: "4",
-    margin: "0"
-  },
+ 
   searchIcon: {
     width: "17px",
     zIndex: "4"

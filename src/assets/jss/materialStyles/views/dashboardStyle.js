@@ -1,13 +1,20 @@
 import {
   whiteColor,
   grayColor,
-  hexToRgb
+  hexToRgb,
+  primaryColor
 } from "../../materialStyles.js";
+import dropdownStyle from "../dropdownStyle";
 
-const dashboardStyle = {
+const dashboardStyle = theme => ({
+  ...dropdownStyle(theme),
+
   upArrowCardCategory: {
     width: "16px",
     height: "16px"
+  },
+  loginProgress: {
+    color: primaryColor[0]
   },
   stats: {
     color: grayColor[0],
@@ -29,6 +36,28 @@ const dashboardStyle = {
       marginRight: "3px",
       marginLeft: "3px"
     }
+  },
+  margin: {
+    zIndex: "4",
+    margin: "0"
+  },
+  search: {
+    "& > div": {
+      marginTop: "0"
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: "10px 15px !important",
+      float: "none !important",
+      paddingTop: "1px",
+      paddingBottom: "1px",
+      padding: "0!important",
+      width: "60%",
+      marginTop: "40px",
+      "& input": {
+        color: whiteColor
+      }
+    },
+    color: primaryColor
   },
   cardCategory: {
     color: grayColor[0],
@@ -73,6 +102,6 @@ const dashboardStyle = {
       lineHeight: "1"
     }
   }
-};
+});
 
 export default dashboardStyle;
