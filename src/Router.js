@@ -39,7 +39,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/user",
+    path: "#",
     name: "User Profile",
     icon: Person,
     component: UserProfile,
@@ -67,7 +67,7 @@ const dashboardRoutes = [
   //   layout: "/admin"
   // },
   {
-    path: "/icons",
+    path: "#",
     name: "Icons",
     icon: BubbleChart,
     component: Icons,
@@ -102,7 +102,6 @@ function Router({ darkTheme, isLoggedIn, history, ...rest }) {
   
   const goToDashboard = () => {
     dispatch(getDashboardData());
-    history.push("/admin/dashboard");
   }
 
   useEffect(() => {
@@ -156,8 +155,9 @@ function Router({ darkTheme, isLoggedIn, history, ...rest }) {
         routes={dashboardRoutes}
         logoText={"Admin Dashboard"}
         logo={logo}
+        isLoggedIn={isLoggedIn}
         handleDrawerToggle={handleDrawerToggle}
-        open={isLoggedIn ? mobileOpen : false}
+        open={mobileOpen}
         {...rest}
       />
     
@@ -184,7 +184,10 @@ function Router({ darkTheme, isLoggedIn, history, ...rest }) {
                         />
                       );
                     })}
-                    <Redirect from="/" to="/admin/login" />
+                    {isLoggedIn ?
+                      <Redirect from="/" to="/admin/dashboard" />
+                    : <Redirect from="/" to="/admin/login" />
+                    }
                   </Switch>
                 </Suspense>
               </Fragment>

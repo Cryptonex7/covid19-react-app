@@ -16,12 +16,18 @@ const authReducer = (state = initState, action) => {
                 authData: action.payload.data,
                 authPending: false,
                 isLoggedIn: true
-        });
+            });
         case actions.LOGIN_ADMIN_FAILED:
             return Object.assign({}, state, {
                 authError: action.payload.data,
                 authPending: false
-        });
+            });
+        case "LOGOUT":
+            return Object.assign({}, state, {
+                authData: {},
+                authPending: false,
+                isLoggedIn: false
+            });
         default: return state;
     }
 }
