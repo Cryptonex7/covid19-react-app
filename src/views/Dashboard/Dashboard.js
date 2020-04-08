@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -33,15 +33,41 @@ import { bugs, website, server } from "../../variables/general.js";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
-  completedTasksChart
+  completedTasksChart,
+  confirmedChart
 } from "../../variables/charts.js";
 
 import styles from "../../assets/jss/materialStyles/views/dashboardStyle.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getGraphDataConfirmed } from "../../services/graph/actions.js";
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const graphState = useSelector(state => state.graph.graphData);
+  const loaderState = useSelector(state => state.misc.loader);
+  const [ypoints, setYpoints] = useState([]);
+  const [xpoints, setXpoints] = useState([]);
+  const [data, setData] = useState({labels: [1, 2, 4], series: [[300, 5000, 4000]]});
+
+  useEffect(() => {
+    dispatch(getGraphDataConfirmed)
+    .then(res => {
+      var yData = Object.keys(res.ypoints).map(key => res.ypoints[key]);
+      setYpoints(yData);
+      var xData = Object.keys(res.xpoints).map(key => {
+        var date = new Date(res.xpoints[key]);
+        
+        return date.getDate() % 5 === 0 && date.getDate() + '/' + (date.getMonth()+1)
+      });
+      setXpoints(xData);
+      // setData({labels: xData, series: yData});
+      console.log({labels: xData, series: [yData]});
+    });
+  }, [])
   return (
     <div>
       <GridContainer>
@@ -159,6 +185,34 @@ export default function Dashboard() {
         </GridItem>
       </GridContainer>
       <GridContainer>
+        <GridItem xs={12}>
+          <Card chart>
+            <CardHeader color="primary" chartCard>
+              <ChartistGraph
+                className="ct-chart"
+                style={{height: 300}}
+                data={{labels: xpoints, series: [ypoints]}}
+                type="Line"
+                options={confirmedChart.options}
+                listener={confirmedChart.animation}
+              />
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>Confirmed Cases</h4>
+              <p className={classes.cardCategory}>
+                <span className={classes.primaryText}>
+                  <ArrowUpward className={classes.upArrowCardCategory} /> 55%
+                </span>{" "}
+                increase in today Cases.
+              </p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+                <AccessTime /> updated 4 minutes ago
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="primary">
