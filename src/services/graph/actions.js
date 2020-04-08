@@ -1,6 +1,6 @@
 import * as actions from "../actionTypes";
 import Axios from 'axios';
-import { API_URL } from "../../config";
+// import { API_URL } from "../../config";
 
 export const getGraphDataConfirmed = async (dispatch, getState) => {
     return new Promise(async (resolve, reject) => {
@@ -13,7 +13,7 @@ export const getGraphDataConfirmed = async (dispatch, getState) => {
             }
         };
         try{
-            const res = await Axios.get(`${API_URL}/day_wise_confirmed`, headers);
+            const res = await Axios.get(`${process.env.API_URL}/day_wise_confirmed`, headers);
             dispatch({type: actions.GET_GRAPH_DATA_CONFIRMED_SUCCESS, payload: res.data});
             dispatch({type: actions.SET_LOADER, payload: false});
             resolve(res.data);
