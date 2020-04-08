@@ -71,7 +71,7 @@ function Admin({ darkTheme, ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Admin Dashboard"}
+        logoText={"COVID19 ANALYTICS"}
         logo={logo}
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}

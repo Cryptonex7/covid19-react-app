@@ -33,7 +33,7 @@ const cardStyle = {
     "& p": {
       marginTop: "0px",
       paddingTop: "0px"
-    }
+    },
   }
 };
 

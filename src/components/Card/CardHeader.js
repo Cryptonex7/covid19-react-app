@@ -14,13 +14,14 @@ const useStyles = makeStyles(styles);
 
 export default function CardHeader(props) {
   const classes = useStyles();
-  const { className, children, color, plain, stats, icon, ...rest } = props;
+  const { className, children, color, plain, stats, icon, chartCard, ...rest } = props;
   const cardHeaderClasses = classNames({
     [classes.cardHeader]: true,
     [classes[color + "CardHeader"]]: color,
     [classes.cardHeaderPlain]: plain,
     [classes.cardHeaderStats]: stats,
     [classes.cardHeaderIcon]: icon,
+    [classes.chartCardHeader]: chartCard,
     [className]: className !== undefined
   });
   return (

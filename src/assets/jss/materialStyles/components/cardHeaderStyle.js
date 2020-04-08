@@ -84,6 +84,9 @@ const cardHeaderStyle = {
       ...primaryCardHeader
     }
   },
+  chartCardHeader: {
+    height: 300
+  }
 };
 
 export default cardHeaderStyle;

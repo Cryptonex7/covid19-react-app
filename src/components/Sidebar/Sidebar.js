@@ -1,5 +1,4 @@
-/*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
@@ -15,12 +14,16 @@ import Icon from "@material-ui/core/Icon";
 import AdminNavbarLinks from "../Navbars/AdminNavbarLinks.js";
 
 import styles from "../../assets/jss/materialStyles/components/sidebarStyle.js";
+import { getGraphDataConfirmed } from "../../services/graph/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const useStyles = makeStyles(styles);
 
 export default function Sidebar(props) {
   const classes = useStyles();
+  
+
   function activeRoute(routeName) {
     return window.location.href.indexOf(routeName) > -1 ? true : false;
   }
@@ -79,6 +82,7 @@ export default function Sidebar(props) {
           <img
             src={logo}
             className={classes.img}
+            alt=""
           />
         </div>
         {logoText}
@@ -104,7 +108,7 @@ export default function Sidebar(props) {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-            {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
+            {<AdminNavbarLinks />}
             {links}
           </div>
           <div
