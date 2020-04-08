@@ -22,6 +22,7 @@ ReactDOM.render(
           <Switch>
             <Route path="/admin" component={Admin} />
             <Redirect from="/" to="/admin/dashboard" />
+            <Redirect from="/covid19-react-app" to="/admin/dashboard" />
           </Switch>
         </Router>
         <ToastContainer position="bottom-left"
