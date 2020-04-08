@@ -15,15 +15,12 @@ import Icon from "@material-ui/core/Icon";
 import AdminNavbarLinks from "../Navbars/AdminNavbarLinks.js";
 
 import styles from "../../assets/jss/materialStyles/components/sidebarStyle.js";
-import { logoutAdmin } from "../../services/auth/actions.js";
-import { useDispatch } from "react-redux";
 
 
 const useStyles = makeStyles(styles);
 
 export default function Sidebar(props) {
   const classes = useStyles();
-  const dispatch = useDispatch()
   function activeRoute(routeName) {
     return window.location.href.indexOf(routeName) > -1 ? true : false;
   }
@@ -39,32 +36,7 @@ export default function Sidebar(props) {
         const whiteFontClasses = classNames({
           [" " + classes.whiteFont]: activeRoute(prop.layout + prop.path)
         });
-        if ( prop.name === "Login")
-          return (
-            <ListItem 
-            button 
-            className={classes.itemLink + listItemClasses}
-            onClick={() => dispatch(logoutAdmin())}
-            >
-              {typeof prop.icon === "string" ? (
-                <Icon
-                  className={classNames(classes.itemIcon, whiteFontClasses)}
-                >
-                  {prop.icon}
-                </Icon>
-              ) : (
-                <prop.icon
-                  className={classNames(classes.itemIcon, whiteFontClasses)}
-                />
-              )}
-              <ListItemText
-                primary={"Logout"}
-                className={classNames(classes.itemText, whiteFontClasses)}
-                disableTypography={true}
-              />
-            </ListItem>
-          )
-        else return (
+        return (
           <NavLink
             to={prop.layout + prop.path}
             className={activePro + classes.item}
@@ -74,18 +46,24 @@ export default function Sidebar(props) {
             <ListItem button className={classes.itemLink + listItemClasses}>
               {typeof prop.icon === "string" ? (
                 <Icon
-                  className={classNames(classes.itemIcon, whiteFontClasses)}
+                  className={classNames(classes.itemIcon, whiteFontClasses, {
+                    [classes.itemIconRTL]: props.rtlActive
+                  })}
                 >
                   {prop.icon}
                 </Icon>
               ) : (
                 <prop.icon
-                  className={classNames(classes.itemIcon, whiteFontClasses)}
+                  className={classNames(classes.itemIcon, whiteFontClasses, {
+                    [classes.itemIconRTL]: props.rtlActive
+                  })}
                 />
               )}
               <ListItemText
-                primary={prop.name}
-                className={classNames(classes.itemText, whiteFontClasses)}
+                primary={props.rtlActive ? prop.rtlName : prop.name}
+                className={classNames(classes.itemText, whiteFontClasses, {
+                  [classes.itemTextRTL]: props.rtlActive
+                })}
                 disableTypography={true}
               />
             </ListItem>
@@ -115,7 +93,9 @@ export default function Sidebar(props) {
           anchor={props.rtlActive ? "left" : "right"}
           open={props.open}
           classes={{
-            paper: classNames(classes.drawerPaper)
+            paper: classNames(classes.drawerPaper, {
+              [classes.drawerPaperRTL]: props.rtlActive
+            })
           }}
           onClose={props.handleDrawerToggle}
           ModalProps={{
@@ -135,42 +115,17 @@ export default function Sidebar(props) {
       </Hidden>
       <Hidden smDown implementation="css">
         <Drawer
-          anchor={"left"}
-          variant="persistent"
-          open = {props.isLoggedIn}
+          anchor={props.rtlActive ? "right" : "left"}
+          variant="permanent"
+          open
           classes={{
-            paper: classNames(classes.drawerPaper)
+            paper: classNames(classes.drawerPaper, {
+              [classes.drawerPaperRTL]: props.rtlActive
+            })
           }}
         >
           {brand}
           <div className={classes.sidebarWrapper}>{links}</div>
-          <div
-            className={classes.background}
-            style={{ backgroundColor: "#fd2a2a" }}
-          />
-        </Drawer>
-        <Drawer
-          anchor={"left"}
-          variant="persistent"
-          open = {!props.isLoggedIn}
-          classes={{
-            paper: classNames(classes.drawerPaper)
-          }}
-        >
-          <div className={classes.sidebarWrapper}>
-            <div className={classes.whiteFont} style = {{padding: 20, fontSize: 20}}>
-              <br/>
-                <img
-                  src={logo}
-                />
-              <br/>
-              <br/>
-              Welcome to WTF Admin Dashboard.
-              <br/>
-              <br/>
-              Unleash Your Admin Powers by Logging In!
-            </div> 
-          </div>
           <div
             className={classes.background}
             style={{ backgroundColor: "#fd2a2a" }}
@@ -182,6 +137,7 @@ export default function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
+  rtlActive: PropTypes.bool,
   handleDrawerToggle: PropTypes.func,
   bgColor: PropTypes.oneOf(["purple", "blue", "green", "orange", "red"]),
   logo: PropTypes.string,

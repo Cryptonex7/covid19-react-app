@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import {connect, useDispatch} from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from "prop-types";
   
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,20 +17,16 @@ import SunnyIcon from "@material-ui/icons/WbSunnyTwoTone";
 
 import styles from "../../assets/jss/materialStyles/components/headerStyle.js";
 import { toggleDarkTheme } from "../../services/theme/actions.js";
-import {  blackColor, whiteColor, primaryColor } from "../../assets/jss/materialStyles.js";
-import Refresh from "@material-ui/icons/Refresh";
-import { getDashboardData } from "../../services/dashboard/actions.js";
 
 const useStyles = makeStyles(styles);
 
 function Header(props) {
   const classes = useStyles();
-  const dispatch = useDispatch();
   function makeBrand() {
     var name;
     props.routes.map(prop => {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
-        name = prop.name;
+        name = props.rtlActive ? prop.rtlName : prop.name;
       }
       return null;
     });
@@ -44,26 +40,28 @@ function Header(props) {
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
+          {/* Here we create navbar brand, based on route name */}
           <Button color="transparent" href="#" className={classes.title}>
             {makeBrand()}
-            <Button
-              color={window.innerWidth > 959 ? "transparent" : "white"}
-              justIcon={window.innerWidth > 959}
-              simple={!(window.innerWidth > 959)}
-              aria-label="SunnyIcon"
-              className={classes.buttonLink}
-              onClick={() => dispatch(getDashboardData())}
-            >
-              <Refresh className={classes.icons} style={{color: primaryColor[0]}} />
-            </Button>
           </Button>
-
+          <Button
+            color={window.innerWidth > 959 ? "transparent" : "white"}
+            justIcon={window.innerWidth > 959}
+            simple={!(window.innerWidth > 959)}
+            aria-label="SunnyIcon"
+            className={classes.buttonLink}
+            onClick={props.toggleDarkTheme}
+          >
+            <SunnyIcon className={classes.icons} />
+            <Hidden mdUp implementation="css">
+              <p className={classes.linkText}>Dashboard</p>
+            </Hidden>
+          </Button>
         </div>
         <Hidden smDown implementation="css">
           <AdminNavbarLinks />
         </Hidden>
         <Hidden mdUp implementation="css">
-          
           <IconButton
             color="inherit"
             aria-label="open drawer"

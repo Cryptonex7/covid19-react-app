@@ -1,10 +1,10 @@
 import {
   defaultFont,
-  primaryColor,
+  dangerColor,
   whiteColor
 } from "../../materialStyles.js";
 
-import dropdownStyle from "../../materialStyles/dropdownStyle";
+import dropdownStyle from "../../materialStyles";
 
 const headerLinksStyle = theme => ({
   ...dropdownStyle(theme),
@@ -79,7 +79,7 @@ const headerLinksStyle = theme => ({
       border: "1px solid " + whiteColor,
       right: "4px",
       fontSize: "9px",
-      background: primaryColor[0],
+      background: dangerColor[0],
       color: whiteColor,
       minWidth: "16px",
       height: "16px",

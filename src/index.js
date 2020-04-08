@@ -1,25 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { ConnectedRouter } from "connected-react-router";
 import { store, persistor, history } from "./store";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./assets/css/materialStyles.css";
-import "./services/ably";
-import Router from "./Router";
 
-window.Ably.connection.on("connected", () => {
-  console.log("%cConnected, to Ably Realtime.", "color: green;");
-  // store.dispatch(setRealtimeConnected(true));
-});
+import Admin from "./layouts/Admin.js";
+import "./assets/css/materialStyles.css";
+
+const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<div>Loading</div>} persistor={persistor}>
       <ConnectedRouter history={history}>
-        <Router/>
+        <Router history={hist}>
+          <Switch>
+            <Route path="/admin" component={Admin} />
+            <Redirect from="/" to="/admin/dashboard" />
+          </Switch>
+        </Router>
         <ToastContainer position="bottom-left"
           autoClose={5000}
           hideProgressBar

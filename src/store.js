@@ -10,7 +10,7 @@ import reduxReset from "redux-reset";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["router", "dashboardFilter"]
+  blacklist: []
 };
 
 export const history = createBrowserHistory();
