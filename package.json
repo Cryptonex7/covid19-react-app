@@ -2,6 +2,7 @@
   "name": "covid19-analysis",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Cryptonex7.github.io/covid19-react-app",
   "dependencies": {
     "@material-ui/core": "4.3.2",
     "@material-ui/icons": "4.2.1",
@@ -12,6 +13,7 @@
     "chartist": "0.10.1",
     "classnames": "2.2.6",
     "connected-react-router": "^6.7.0",
+    "gh-pages": "^2.2.0",
     "history": "4.9.0",
     "perfect-scrollbar": "1.4.0",
     "prop-types": "15.7.2",
@@ -33,6 +35,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
