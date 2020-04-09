@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Admin from "./layouts/Admin.js";
 import "./assets/css/materialStyles.css";
+import Dashboard from "./views/Dashboard/Dashboard";
 
 const hist = createBrowserHistory();
 
@@ -20,8 +21,9 @@ ReactDOM.render(
       <ConnectedRouter history={history}>
         <Router history={hist}>
           <Switch>
-            <Route path="/admin" component={Admin} />
-            <Redirect from="/" to="/admin/dashboard" />
+            <Route path="/" component={Admin} />
+            <Route path="/covid19-react-app" component={Admin} />
+            {/* <Redirect from="/" to="/admin/dashboard" /> */}
             <Redirect from="/covid19-react-app" to="/admin/dashboard" />
           </Switch>
         </Router>

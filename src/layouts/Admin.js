@@ -20,7 +20,11 @@ const switchRoutes = (
     {routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
-          <Route
+          prop.name ==="Dashboard" ? <Route
+            path={'/'}
+            component={prop.component}
+            key={key}
+          /> : <Route
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
