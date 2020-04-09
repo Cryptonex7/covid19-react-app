@@ -25,7 +25,7 @@ const store = createStore(
     reduxReset({
       type: "LOGOUT"
     }),
-    process.env.NODE_ENV !== 'production' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({trace: true}) : undefined
+    // process.env.NODE_ENV !== 'production' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({trace: true}) : undefined
   )
 );
 const persistor = persistStore(store);
