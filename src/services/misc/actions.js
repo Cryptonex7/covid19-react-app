@@ -6,3 +6,10 @@ export const setLoader = (val) => {
         payload: val
     }
 }
+
+export const setError = (val) => {
+    return {
+        type: actions.SET_ERROR,
+        payload: val
+    }
+}
