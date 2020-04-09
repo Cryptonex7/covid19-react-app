@@ -1,5 +1,5 @@
 import React from "react";
-import { MAPS_API_KEY } from "../../config.js";
+// import { MAPS_API_KEY } from "../../config.js";
 import {
   withScriptjs,
   withGoogleMap,
@@ -85,7 +85,7 @@ const CustomSkinMap = withScriptjs(
 export default function Maps() {
   return (
     <CustomSkinMap
-      googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}`}
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}`}
       loadingElement={<div style={{ height: `100%` }} />}
       containerElement={<div style={{ height: `100vh` }} />}
       mapElement={<div style={{ height: `100%` }} />}
