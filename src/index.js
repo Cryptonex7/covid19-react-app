@@ -23,7 +23,7 @@ ReactDOM.render(
           <Switch>
             <Route path="/" component={Admin} />
             <Route path="/covid19-react-app" component={Admin} />
-            {/* <Redirect from="/" to="/admin/dashboard" /> */}
+            {console.log("ENV: ", process.env.NODE_ENV)}
             <Redirect from="/covid19-react-app" to="/admin/dashboard" />
           </Switch>
         </Router>
